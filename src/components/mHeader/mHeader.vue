@@ -25,7 +25,9 @@ export default {
 @import "../../common/style/variable.sass"
 @import "../../common/style/mixin.sass"
 .mHeader
-  position: relative
+  position: fixed
+  top: 0
+  left: 0
   width: 100%
   background: $color-background-head
   .logo

@@ -80,13 +80,13 @@ export default {
       default: 400
     }
   },
-  data() {
+  data () {
     return {
       dots: [],
       currentPageIndex: 0
-    }
+    };
   },
-  mounted() {
+  mounted () {
     this.update();
     window.addEventListener('resize', () => {
       if (!this.slide || !this.slide.enabled) {
@@ -105,7 +105,7 @@ export default {
       }, 60);
     });
   },
-  activated() {
+  activated () {
     if (!this.slide) {
       return;
     }
@@ -114,38 +114,38 @@ export default {
     this.slide.goToPage(pageIndex, 0, 0);
     this.currentPageIndex = pageIndex;
     if (this.autoPlay) {
-      this._play()
+      this._play();
     }
   },
-  deactivated() {
+  deactivated () {
     this.slide.disable();
     clearTimeout(this.timer);
   },
-  beforeDestroy() {
+  beforeDestroy () {
     this.slide.disable();
     clearTimeout(this.timer);
   },
   methods: {
-    update() {
+    update () {
       if (this.slide) {
         this.slide.destroy();
       }
       this.$nextTick(() => {
         this.init();
-      })
+      });
 
     },
-    refresh() {
+    refresh () {
       this._setSlideWidth(true);
       this.slide.refresh();
     },
-    prev() {
+    prev () {
       this.slide.prev();
     },
-    next() {
+    next () {
       this.slide.next();
     },
-    init() {
+    init () {
       clearTimeout(this.timer);
       this.currentPageIndex = 0;
       this._setSlideWidth();
@@ -157,7 +157,7 @@ export default {
         this._play();
       }
     },
-    _setSlideWidth(isResize) {
+    _setSlideWidth (isResize) {
       this.children = this.$refs.sliderGroup.children;
       let width = 0;
       let slideWidth = this.$refs.slider.clientWidth;
@@ -175,7 +175,7 @@ export default {
       this.$refs.sliderGroup.style.width = width + 'px';
       console.log(this.$refs.sliderGroup.style.width + "__" + this.$refs.slider.style.width);
     },
-    _initSlide() {
+    _initSlide () {
       console.log(this.threshold);
       this.slide = new BScroll(this.$refs.slider, {
         scrollX: true,
@@ -202,25 +202,24 @@ export default {
         }
       });
     },
-    _onScrollEnd() {
+    _onScrollEnd () {
       let pageIndex = this.slide.getCurrentPage().pageX;
       this.currentPageIndex = pageIndex;
       if (this.autoPlay) {
         this._play();
       }
     },
-    _initDots() {
+    _initDots () {
       this.dots = new Array(this.children.length);
     },
-    _play() {
+    _play () {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.slide.next()
       }, this.interval)
     }
-  },
-
-}
+  }
+};
 </script>
 
 <style lang="sass" type="text/sass">
@@ -228,6 +227,7 @@ export default {
 
 .slider-wrapper
   position: relative
+  margin-top: 90px
   width: 100%
   overflow: hidden
   .slider
