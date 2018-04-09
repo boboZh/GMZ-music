@@ -46,7 +46,7 @@ export default {
       text-align: center
       & > a
         display: block
-        font-size: 15px
+        font-size: $font-size-medium-x
         color: $color-text
         &.router-link-active
           position: relative
