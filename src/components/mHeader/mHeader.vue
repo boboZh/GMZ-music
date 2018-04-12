@@ -29,6 +29,7 @@ export default {
   top: 0
   left: 0
   width: 100%
+  z-index: 999
   background: $color-background-head
   .logo
     height: 50px

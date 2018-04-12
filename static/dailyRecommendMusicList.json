@@ -1,0 +1,66 @@
+{
+  "code": 200,
+  "data": [
+    {
+      "id": 1,
+      "name": "musicList1",
+      "tag": "",
+      "desc": "华语速爆新歌",
+      "cover": "http://p1.music.126.net/XHWeot4jlMQh9mIEE_63vA==/109951163240021749.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    },
+    {
+      "id": 2,
+      "name": "musicList2",
+      "tag": "三分熟",
+      "desc": "社恐俱乐部",
+      "cover": "http://p1.music.126.net/7l8GIDoefDOFRVfaYp300A==/18715886930125505.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    },
+    {
+      "id": 3,
+      "name": "musicList3",
+      "tag": "欧美",
+      "desc": "人声启奏&nbsp;聆听清香芬芳的无前奏音乐",
+      "cover": "http://p1.music.126.net/T3ndLxMw6TlSsO_DXmG7_A==/3427177782015568.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    },
+    {
+      "id": 4,
+      "name": "musicList4",
+      "tag": "电台节目",
+      "desc": "【发刊词】方文山：邀请你加入我的音乐小宇宙",
+      "cover": "http://p1.music.126.net/qiKTvgoQfDcxMqfc4O0Ncw==/18522372881598873.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    },
+    {
+      "id": 5,
+      "name": "musicList5",
+      "tag": "",
+      "desc": "「女毒电子」跌进充满梦幻般的意境",
+      "cover": "http://p1.music.126.net/qNnaotqswSSIaxPHTpdmBA==/18770862511115632.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    },
+    {
+      "id": 6,
+      "name": "musicList6",
+      "tag": "",
+      "desc": "美国乡村民谣之旅",
+      "cover": "http://p1.music.126.net/QCPdjjtetNFRMA0t9YuILA==/18527870441646570.jpg?param=140y140",
+      "created": "",
+      "updated": "",
+      "deleted": ""
+    }
+  ],
+  "message": ""
+}

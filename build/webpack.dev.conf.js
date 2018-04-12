@@ -1,17 +1,24 @@
-'use strict'
-const utils = require('./utils')
-const webpack = require('webpack')
-const config = require('../config')
-const merge = require('webpack-merge')
-const path = require('path')
-const baseWebpackConfig = require('./webpack.base.conf')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const portfinder = require('portfinder')
+'use strict';
+const express = require('express');
+var app = express();
+const bannerData = require('../static/banner.json');
+const dailyRecommendMusicListData = require('../static/dailyRecommendMusicList.json');
+const apiRoutes = express.Router();
+app.use('/api',apiRoutes);
 
-const HOST = process.env.HOST
-const PORT = process.env.PORT && Number(process.env.PORT)
+const utils = require('./utils');
+const webpack = require('webpack');
+const config = require('../config');
+const merge = require('webpack-merge');
+const path = require('path');
+const baseWebpackConfig = require('./webpack.base.conf');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
+const portfinder = require('portfinder');
+
+const HOST = process.env.HOST;
+const PORT = process.env.PORT && Number(process.env.PORT);
 
 const devWebpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -42,6 +49,20 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app) {
+      app.get('/api/banner', (req, res) => {
+        res.json({
+          errno: 0,
+          data: bannerData
+        });
+      }),
+      app.get('/api/goods', (req, res) => {
+        res.json({
+          errno: 0,
+          data: dailyRecommendMusicListData
+        })
+      })
     }
   },
   plugins: [

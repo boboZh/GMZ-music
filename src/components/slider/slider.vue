@@ -2,41 +2,46 @@
   <div class="slider-wrapper">
     <div class="slider" ref="slider">
       <div class="slider-group" ref="sliderGroup">
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_1.jpg" alt="">
+        <div class="slider-item" v-for="(item,index) in slideItems" :key="index">
+          <a href="item.target">
+            <img :src="item.img" alt="">
           </a>
         </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_2.jpg" alt="">
-          </a>
-        </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_3.jpg" alt="">
-          </a>
-        </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_4.jpg" alt="">
-          </a>
-        </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_5.jpg" alt="">
-          </a>
-        </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_6.jpg" alt="">
-          </a>
-        </div>
-        <div class="slider-item">
-          <a href="">
-            <img src="../../common/images/pic_7.jpg" alt="">
-          </a>
-        </div>
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_1.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_2.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_3.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_4.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_5.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_6.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
+        <!--<div class="slider-item">-->
+          <!--<a href="">-->
+            <!--<img src="../../common/images/pic_7.jpg" alt="">-->
+          <!--</a>-->
+        <!--</div>-->
       </div>
       <div class="dots">
         <span class="dot" :class="{active:currentPageIndex === index}" v-for="(item, index) in dots" :key="index"></span>
@@ -47,7 +52,8 @@
 
 <script>
 import BScroll from 'better-scroll';
-const COMPONENT_NAME = 'slide';
+import axios from 'axios';
+const COMPONENT_NAME = 'slider';
 export default {
   name: COMPONENT_NAME,
   props: {
@@ -80,11 +86,12 @@ export default {
       default: 400
     }
   },
-  data () {
-    return {
-      dots: [],
-      currentPageIndex: 0
-    };
+  created () {
+    axios.get('/api/banner').then((response) => {
+      this.slideItems = response.data.data.data;
+      this.update();
+    });
+    // console.log(this.slideItems);
   },
   mounted () {
     this.update();
@@ -126,6 +133,9 @@ export default {
     clearTimeout(this.timer);
   },
   methods: {
+    clickTest () {
+      console.log(this.slideItems);
+    },
     update () {
       if (this.slide) {
         this.slide.destroy();
@@ -133,7 +143,6 @@ export default {
       this.$nextTick(() => {
         this.init();
       });
-
     },
     refresh () {
       this._setSlideWidth(true);
@@ -162,21 +171,21 @@ export default {
       let width = 0;
       let slideWidth = this.$refs.slider.clientWidth;
       this.$refs.slider.style.width = slideWidth + 'px';
-      console.log(slideWidth);
+      console.log(this.$refs.sliderGroup.children)
+      console.log(this.$refs.slider.style.width);
       for (let i = 0; i < this.$refs.sliderGroup.children.length; i++) {
         let child = this.children[i];
         // addClass(child, 'slide-item')
         child.style.width = slideWidth + 'px';
-        width += slideWidth
+        width += slideWidth;
       }
       if (this.loop && !isResize) {
-        width += 2 * slideWidth
+        width += 2 * slideWidth;
       }
       this.$refs.sliderGroup.style.width = width + 'px';
-      console.log(this.$refs.sliderGroup.style.width + "__" + this.$refs.slider.style.width);
+      // console.log(this.$refs.sliderGroup.style.width + "__" + this.$refs.slider.style.width);
     },
     _initSlide () {
-      console.log(this.threshold);
       this.slide = new BScroll(this.$refs.slider, {
         scrollX: true,
         scrollY: false,
@@ -189,7 +198,7 @@ export default {
         bounce: false,
         stopPropagation: true,
         click: this.click
-      })
+      });
       this.slide.on('scrollEnd', this._onScrollEnd);
       this.slide.on('touchEnd', () => {
         if (this.autoPlay) {
@@ -215,9 +224,16 @@ export default {
     _play () {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
-        this.slide.next()
-      }, this.interval)
+        this.slide.next();
+      }, this.interval);
     }
+  },
+  data () {
+    return {
+      slideItems: [],
+      dots: [],
+      currentPageIndex: 0
+    };
   }
 };
 </script>
