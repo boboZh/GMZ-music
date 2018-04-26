@@ -1,44 +1,15 @@
 <template>
   <div id="app">
     <mHeader></mHeader>
-    <slider></slider>
-    <div class="block border-1px">
-      <div class="block-item">
-        <a href="">
-          <span class="icon icon-calendar"></span>
-          <span class="title">
-            每日推荐
-          </span>
-        </a>
-      </div>
-      <div class="block-item">
-        <a href="">
-          <span class="icon icon-music"></span>
-          <span class="title">
-            歌单
-          </span>
-        </a>
-      </div>
-      <div class="block-item">
-        <a href="">
-          <span class="icon icon-stats-bars"></span>
-          <span class="title">
-            排行榜
-          </span>
-        </a>
-      </div>
-    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
 import mHeader from 'components/mHeader/mHeader';
-import slider from 'components/slider/slider';
 export default {
   name: 'App',
   components: {
-    slider,
     mHeader: mHeader
   }
 };

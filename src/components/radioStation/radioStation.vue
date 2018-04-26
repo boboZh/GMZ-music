@@ -10,6 +10,9 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="sass" type="text/sass">
+@import "../../common/style/variable.sass"
+@import "../../common/style/mixin.sass"
+.radioStation
+  margin-top: 90px
 </style>
