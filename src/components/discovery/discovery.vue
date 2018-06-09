@@ -33,7 +33,6 @@
 <script>
 import slider from "components/slider/slider";
 export default {
-  name: "discovery",
   components: {
     slider: slider
   }
