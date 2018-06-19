@@ -19,6 +19,10 @@
      </div>
     </li>
     </ul>
+    <div class="mineBottom">
+      <p>默（电影《何以笙箫默》主题插曲）</p>
+      <audio src="" controls></audio>
+    </div>
   </div>
 </template>
 
@@ -83,4 +87,18 @@ export default {
      font-size: 13px
     span:first-child
      font-size: 16px
+  .mineBottom
+   position: fixed
+   bottom: 0
+   left: 0
+   width: 90%
+   margin: 0 5%
+   audio
+    width: 100%
+   p
+    margin: 0
+    font-size: 13px
+    height: 30px
+    line-height: 30px
+    color: #333
 </style>
